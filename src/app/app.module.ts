@@ -17,14 +17,7 @@ import { Pag1Component } from './components/caixaHambugueria/pag1/pag1.component
 import { Pag2Component } from './components/caixaHambugueria/pag2/pag2.component';
 import { TesteLoginComponent } from './components/testLogin/teste-login/teste-login.component';
 import { RouterModule, Routes } from '@angular/router';
-
 import { TesteTesteComponent } from './components/testLogin/teste-teste/teste-teste.component';
-
-const routes: Routes = [
-  {
-    path: 'teste-teste', component: TesteTesteComponent
-  },
-]
 
 @NgModule({
   declarations: [
@@ -33,12 +26,12 @@ const routes: Routes = [
     Pag1Component,
     Pag2Component,
     TesteLoginComponent,
+    TesteTesteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,

@@ -50,8 +50,8 @@ export class TesteLoginComponent implements OnInit {
     })
   }
 
-  async ngOnInit() {
-
+  ngOnInit() {
+    this.us.state()
   }
 
   async salvarForm(){
@@ -61,7 +61,7 @@ export class TesteLoginComponent implements OnInit {
         let user = {} as User
         user.email = this.formLogin.value.email
         user.password = this.formLogin.value.password
-          if(this.us.createLogin(user)) {
+          if(this.us.create(user)) {
             console.log('Sucesso!, Usuário Cadastrado!')
             this.router.navigateByUrl('/teste-teste')
           } else {
@@ -75,6 +75,10 @@ export class TesteLoginComponent implements OnInit {
       console.log(e)
     }
     
+  }
+
+  async logout() {
+    this.us.signOut()
   }
 
 }

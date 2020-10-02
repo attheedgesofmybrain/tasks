@@ -1,1 +1,13 @@
-<p>teste-teste works!</p>
+<form [formGroup]="formDataUser">
+    <div class="form-group col-3">
+        <label>Nome</label>
+        <input  class="form-control" formControlName="name" type="text" placeholder="Digite seu nome">
+    </div>
+    <div class="form-group col-3">
+        <label>Idade</label>
+        <input  class="form-control" formControlName="age" type="number" placeholder="Digite sua idade">
+    </div>
+    <div class="form-group col-3">
+        <button (click)="salvarForm()" class="btn btn-dark">OK</button>
+    </div>
+</form>
