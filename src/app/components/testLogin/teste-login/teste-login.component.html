@@ -1,0 +1,13 @@
+<form [formGroup]="formLogin">
+    <div class="form-group col-3">
+        <label>Email</label>
+        <input  class="form-control" formControlName="email" type="email" placeholder="Digite seu nome">
+    </div>
+    <div class="form-group col-3">
+        <label>Senha</label>
+        <input  class="form-control" formControlName="password" type="password" placeholder="Digite sua senha">
+    </div>
+    <div class="form-group col-3">
+        <button (click)="salvarForm()" class="btn btn-dark">Criar Login</button>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+<form #form="ngForm" (ngSubmit)="CriarRegistroVendas(form.value)">
+    <div class="form-group col-3">
+        <label>Data</label>
+        <input [(ngModel)]="vendas.data" name="data" type="date" class="form-control">
+    </div>
+    <div class="form-group col-3">
+        <label>Dinheiro</label>
+        <input [(ngModel)]="vendas.dinheiro" name="dinheiro" type="number" class="form-control" placeholder="Entre com o valor R$">
+    </div>
+
+        <div class="input-group col-9">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Cartão</span>
+            </div>
+            <input [(ngModel)]="vendas.cartao" value="{{vendas.credito+vendas.debito}}" name="cartao" type="number" class="form-control" disabled="">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Débito</span>
+            </div>
+            <input [(ngModel)]="vendas.debito" name="debito" type="number" class="form-control">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Crédito</span>
+            </div>
+            <input [(ngModel)]="vendas.credito" name="credito" type="number" class="form-control">
+        </div>
+    
+    <div class="form-group col-3">
+        <label>Aiqfome</label>
+        <input [(ngModel)]="vendas.aiqfome" name="aiqfome" type="number" class="form-control" placeholder="Entre com o valor R$">
+    </div>
+
+    <div class="input-group col-12">
+         
+        <select class="form-control col-2" [(ngModel)]="vendas.entregador" name="entregador">
+            <option *ngFor="let entregador of entregadores">{{entregador.nome}}</option>
+          </select>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text">Total de Entregas</span>
+        </div>
+        <input [(ngModel)]="vendas.entregas" name="entregas" type="number" class="form-control col-2">
+
+        <div class="input-group-prepend">
+            <span class="input-group-text">Total</span>
+        </div>
+        <input [(ngModel)]="vendas.valorEntregas" name="valorEntregas" type="number" class="form-control col-2">
+    </div>
+
+    <div class="form-group col-3">
+        <label>Toral de Retiradas</label>
+        <input [(ngModel)]="vendas.retiras" name="retiras" type="number" class="form-control" placeholder="Entre com o total">
+    </div>
+    
+    <button type="submit" class="btn btn-dark">Criar Registro</button>
+</form>

@@ -1,9 +1,10 @@
+import { noUndefined } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { SubTask } from '../models/subTask.model';
-import { Task } from '../models/task.model';
+import { SubTask } from './models/subTask.model';
+import { Task } from './models/task.model';
 
 @Component({
   selector: 'app-test1',
@@ -36,24 +37,30 @@ export class Test1Component implements OnInit {
 
   async createTask(task: Task) {
 
-    this.firestore.collection("CounterTask").snapshotChanges().subscribe(data => {
-      this.counterTask = data.map(e => {
-        return {
-          id: e.payload.doc.id,
-          value: e.payload.doc.data()['value']
-        }
+    try {
+      this.firestore.collection("CounterTask").snapshotChanges().subscribe(data => {
+        this.counterTask = data.map(e => {
+          return {
+            id: e.payload.doc.id,
+            value: e.payload.doc.data()['value']
+          }
+        })
+        task.uid = this.counterTask[0]['value']
       })
-    })
-    
-    task.uid = this.counterTask[0]['value']
-    await this.firestore.collection('Tasks').add(task)
-    console.log("Nova tarefa adicionada -> " ,task)
-    
-    task.uid++
-    await this.firestore.doc('CounterTask/c1').update({
-      value: task.uid
-    })
 
+      await this.firestore.collection('Tasks').add(task)
+      console.log("Nova tarefa adicionada -> " ,task)
+      
+      task.uid++
+      await this.firestore.doc('CounterTask/c1').update({
+        value: task.uid
+      })
+    }
+    catch(e) {
+        console.log('Erro: ' +e)
+        
+    }
+    
   }
 
 }
