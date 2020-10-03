@@ -3,11 +3,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../models/user.model';
 import { UserData } from '../models/userData.model';
+import { TesteLoginComponent } from '../teste-login/teste-login.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+
 
   constructor(
     private auth: AngularFireAuth,
@@ -16,7 +18,7 @@ export class UsersService {
   {
 
   }
-
+  
     async create(user: User) {
       await this.auth.createUserWithEmailAndPassword(user.email, user.password)
       .then(data => {
@@ -36,14 +38,6 @@ export class UsersService {
           console.log('Usuário: ', user.email)
         } else {
           console.log('Offline')
-        }
-      })
-    }
-
-    async getEmailByState() {
-      await this.auth.onAuthStateChanged(function(user) {
-        if(user) {
-          return user.email
         }
       })
     }
@@ -78,13 +72,10 @@ export class UsersService {
       })
     }
 
-    
-
-
     async createUserData(userData: UserData) {
       console.log(this.state());
       
-      await this.fs.doc(`/Users/${this.getEmailByState()}`).collection('UserData').add(userData)
+      await this.fs.doc(`/Users/${(await this.auth.currentUser).email}`).collection('UserData').add(userData)
       console.log(userData)
     }
     

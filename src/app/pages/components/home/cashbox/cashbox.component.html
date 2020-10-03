@@ -1,0 +1,60 @@
+<app-navbar></app-navbar>
+
+<form>
+    <div class="form-group col-3">
+        <label>DATA</label>
+        <input [(ngModel)]="cashbox.date" name="date" type="date" class="form-control">
+    </div>
+    <div class="form-group col-3">
+        <label>DINHEIRO</label>
+        <input [(ngModel)]="cashbox.currency" name="currency" type="number" class="form-control" placeholder="ENTRE COM O VALOR R$">
+    </div>
+
+        <div class="input-group col-9">
+            <div class="input-group-prepend">
+                <span class="input-group-text">CARTÃO</span>
+            </div>
+            <input [(ngModel)]="cashbox.card" value="{{cashbox.creditCard+cashbox.debitCard}}" name="card" type="number" class="form-control" disabled="">
+            <div class="input-group-prepend">
+                <span class="input-group-text">DÉBITO</span>
+            </div>
+            <input [(ngModel)]="cashbox.debitCard" name="debitCard" type="number" class="form-control">
+            <div class="input-group-prepend">
+                <span class="input-group-text">CRÉTIDO</span>
+            </div>
+            <input [(ngModel)]="cashbox.creditCard" name="creditCard" type="number" class="form-control">
+        </div>
+    
+    <div class="form-group col-3">
+        <label>AIQFOME</label>
+        <input [(ngModel)]="cashbox.online" name="online" type="number" class="form-control" placeholder="ENTRE COM O VALOR R$">
+    </div>
+
+    <div class="input-group col-12">
+         
+        <select class="form-control col-2" [(ngModel)]="cashbox.deliveryman" name="deliveryman">
+            <option *ngFor="let deliveryman of deliverymen">{{deliveryman.name}}</option>
+          </select>
+
+        <div class="input-group-prepend">
+            <span class="input-group-text">TOTAL DE ENTREGAS</span>
+        </div>
+        <input [(ngModel)]="cashbox.deliveries" name="deliveries" type="number" class="form-control col-2">
+
+        <div class="input-group-prepend">
+            <span class="input-group-text">TOTAL</span>
+        </div>
+        <input [(ngModel)]="cashbox.deliveriesValue" name="deliveriesValue" type="number" class="form-control col-2">
+    </div>
+
+    <div class="form-group col-3">
+        <label>TOTAL DE RETIRADAS</label>
+        <input [(ngModel)]="cashbox.withdrawals" name="withdrawals" type="number" class="form-control" placeholder="Entre com o total">
+    </div>
+
+    <div class="form-group col-3">
+        <label>TOTAL</label>
+        <input [(ngModel)]="cashbox.totalValue" name="totalValue" type="number" class="form-control" value="{{cashbox.card+cashbox.online+cashbox.currency}}"  disabled="">
+    </div>
+    <button type="submit" class="btn btn-dark">Criar Registro</button>
+</form>

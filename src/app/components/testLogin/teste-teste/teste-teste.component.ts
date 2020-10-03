@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserData } from '../models/userData.model';
+import { User } from '../models/User.model';
 import { UsersService } from '../services/users.service';
 
 @Component({
@@ -42,10 +43,10 @@ export class TesteTesteComponent implements OnInit {
     }
 
   ngOnInit(
+    
   ) 
   {
     this.us.state()
-    this.us.getEmailByState()
   }
 
   async salvarForm(){
@@ -55,7 +56,7 @@ export class TesteTesteComponent implements OnInit {
         let userData = {} as UserData
         userData.name = this.formDataUser.value.name
         userData.age = this.formDataUser.value.age
-          if(this.us.createUserData(this.us.createUserData(), userData)) {
+          if(this.us.createUserData(userData)) {
             console.log('Sucesso!, Usuário Cadastrado!')
             //this.router.navigateByUrl('/teste-teste')
           } else {

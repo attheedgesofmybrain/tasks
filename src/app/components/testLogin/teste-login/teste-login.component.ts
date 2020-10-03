@@ -55,7 +55,6 @@ export class TesteLoginComponent implements OnInit {
   }
 
   async salvarForm(){
-
     try {
       if(this.formLogin.valid) {
         let user = {} as User
@@ -74,7 +73,6 @@ export class TesteLoginComponent implements OnInit {
     catch(e) {
       console.log(e)
     }
-    
   }
 
   async logout() {

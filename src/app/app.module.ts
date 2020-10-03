@@ -16,8 +16,16 @@ import { CommonModule } from '@angular/common';
 import { Pag1Component } from './components/caixaHambugueria/pag1/pag1.component';
 import { Pag2Component } from './components/caixaHambugueria/pag2/pag2.component';
 import { TesteLoginComponent } from './components/testLogin/teste-login/teste-login.component';
-import { RouterModule, Routes } from '@angular/router';
 import { TesteTesteComponent } from './components/testLogin/teste-teste/teste-teste.component';
+import { HomeComponent } from './pages/components/home/home.component';
+import { SigninComponent } from './pages/components/auth/signin/signin.component';
+import { SignupComponent } from './pages/components/auth/signup/signup.component';
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './pages/components/navbar/navbar.component';
+import { CashboxComponent } from './pages/components/home/cashbox/cashbox.component';
+import { ReportsComponent } from './pages/components/home/cashbox/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +34,13 @@ import { TesteTesteComponent } from './components/testLogin/teste-teste/teste-te
     Pag1Component,
     Pag2Component,
     TesteLoginComponent,
-    TesteTesteComponent
+    TesteTesteComponent,
+    SigninComponent,
+    SignupComponent,
+    HomeComponent,
+    NavbarComponent,
+    CashboxComponent,
+    ReportsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +51,11 @@ import { TesteTesteComponent } from './components/testLogin/teste-teste/teste-te
     AngularFireAuthModule,
     FormsModule, 
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 2000
+    }),
+    BrowserAnimationsModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

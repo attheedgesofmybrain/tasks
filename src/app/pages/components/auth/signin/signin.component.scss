@@ -1,0 +1,22 @@
+form:before {
+    content: '';
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    z-index: -1;
+}
+
+.zero {
+    margin-top: 150px;
+    padding: auto;
+    background-color: darkgray;
+}
+
+.msg-erro {
+    font-weight: 900;
+    font-size: 12px;
+    color: black;
+}

@@ -1,0 +1,27 @@
+<div class="row zero">
+    <div class="mx-auto text-center form p-4">
+       <h1 class="display-4 py-2 text-truncate">LOGIN</h1>
+       <div class="px-2">
+           <form class="justify-content-center">
+               <div class="form-group">
+                   <input required [(ngModel)]="user.email" name="email" class="form-control" type="email" placeholder="DIGITE O EMAIL...">
+                  <!--<ng-container *ngFor="let erro of validationMessages.email">
+                       <span class="msg-erro" *ngIf="signup.get('email').hasError(erro.type) && (signup.get('email').dirty || signup.get('email').touched)">{{ erro.message }}</span>
+                   </ng-container>-->
+               </div>
+               <div class="form-group">
+                   <input required [(ngModel)]="user.pass" name="pass" class="form-control" type="password" placeholder="DIGITE A SENHA...">
+                  <!--<ng-container *ngFor="let erro of validationMessages.pass">
+                       <span class="msg-erro" *ngIf="signup.get('pass').hasError(erro.type) && (signup.get('pass').dirty || signup.get('pass').touched)">{{ erro.message }}</span>
+                   </ng-container>-->
+               </div>
+               <div class="form-group">
+                   <button (click)="signin(user)" class="btn btn-dark">ENTRAR</button>
+               </div>
+               <div class="form-group">
+                    <button routerLink="/signup" class="btn btn-dark">IR PARA CADASTRO</button>
+                </div>
+           </form>
+       </div>
+   </div>
+</div>
