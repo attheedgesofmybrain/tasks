@@ -5,7 +5,7 @@ export interface CashBox {
     creditCard: number
     online: number
     deliveryman: string
-    deliveries: number
+    deliveries: number,
     deliveriesValue: number
     withdrawals: number
     totalValue: number

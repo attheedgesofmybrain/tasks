@@ -26,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './pages/components/navbar/navbar.component';
 import { CashboxComponent } from './pages/components/home/cashbox/cashbox.component';
 import { ReportsComponent } from './pages/components/home/cashbox/reports/reports.component';
+import { PipeModule } from './pages/pipes/pipes.module';
+import { EditComponent } from './pages/components/home/cashbox/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ReportsComponent } from './pages/components/home/cashbox/reports/report
     NavbarComponent,
     CashboxComponent,
     ReportsComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import { ReportsComponent } from './pages/components/home/cashbox/reports/report
     ToastrModule.forRoot({
       timeOut: 2000
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    PipeModule
   ],
   providers: [AngularFireAuth],
   bootstrap: [AppComponent]

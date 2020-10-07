@@ -1,1 +1,93 @@
 <app-navbar></app-navbar>
+
+
+
+<form style="margin-top: 20px">
+    <div class="form-row input-group">
+        <div class="input-group-prepend col-3">
+          <span style="border-radius: 0%;" class="input-group-text">Filtrar por</span>
+            <select [(ngModel)]='filtro' style="border-radius: 0%;" class="form-control">
+                <option>Data</option>
+            </select>
+        </div>
+
+      <div style="border-radius: 0%;" class="input-group-prepend col-3">
+
+        <div class="input-group-prepend">
+          <span style="border-radius: 0%;" class="input-group-text">De</span>
+        </div>
+          <input [(ngModel)]="de" name="de" style="border-radius: 0%;" type="date" class="form-control">
+
+        <div style="border-radius: 0%;" class="input-group-prepend">
+          <span style="border-radius: 0%;" class="input-group-text">Até</span>
+        </div>
+          <input [(ngModel)]="ate" name="ate" style="border-radius: 0%;" type="date" class="form-control">
+          <button (click)="filter()" style="margin-left: 27px;" class="btn btn-dark">Filtrar</button>
+          <button (click)="reset()" style="margin-left: 27px;" class="btn btn-dark">Limpar</button>
+      </div>
+      
+    </div>
+
+    <table style="margin-top: 20px" class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Data</th>
+            <th scope="col">Dinheiro</th>
+            <th scope="col">Cartão</th>
+            <th scope="col">Aiqfome</th>
+            <th scope="col">Entregador</th>
+            <th scope="col">Total</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let cashBox of cashBoxes">
+          <tr>
+            <th scope="row">{{cashBox.date | dateFormat}}</th>
+            <td>{{cashBox.currency | currencyFormat}}</td>
+            <td>Cartão: {{cashBox.card | currencyFormat}}<br>Débito: {{cashBox.debitCard | currencyFormat}}<br>Crédito: {{cashBox.creditCard | currencyFormat}}</td>
+            <td>{{cashBox.online | currencyFormat}}</td>
+            <td>Entregador: {{cashBox.deliveryman}}<br>Entregas: {{cashBox.deliveries}} ({{cashBox.deliveriesValue | currencyFormat}})<br>Retiras: {{cashBox.withdrawals}}</td>
+            <td>{{cashBox.totalValue | currencyFormat}}</td>
+            <td>
+              <button [routerLink]="['/cashbox/', cashBox.id]" style="margin-right: 3px" type="button" class="btn btn-primary">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                </svg>
+              </button>
+              <button  data-toggle="modal" data-target="#modalDelete" type="button" class="btn btn-danger">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot class="thead-light">
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">{{currency | currencyFormat}}</th>
+            <th scope="col">Cartão: {{card | currencyFormat}}<br>Débito: {{debitCard | currencyFormat}}<br>Crédito: {{creditCard | currencyFormat}}</th>
+            <th scope="col">{{online | currencyFormat}}</th>
+            <th scope="col">Entregas: {{deliveries}} ({{deliveriesValue | currencyFormat}})<br>Retiras: {{withdrawals}}</th>
+            <th scope="col">{{totalValue | currencyFormat}}</th>
+            <th scope="col"></th>
+          </tr>
+        </tfoot>
+      </table>
+</form>
+
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modelLabelDelete" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modelLabelDelete">Tem certeza que deseja excluir esse documento?</h5>
+        <button type="button" class="close" data-dismiss="modelDelete" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="delete(cashBox.id)">Sim!</button>
+      </div>
+    </div>
+  </div>
+</div>

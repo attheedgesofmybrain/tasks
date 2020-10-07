@@ -19,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   async logout() {
     this.authService.signOut()
+    localStorage['email'] = null
     this.route.navigateByUrl('/signin')
   }
 

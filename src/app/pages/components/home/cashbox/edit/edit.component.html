@@ -58,7 +58,7 @@
         <input [(ngModel)]="cashBox.totalValue" name="totalValue" type="number" class="form-control" value="{{cashBox.creditCard+cashBox.debitCard+cashBox.online+cashBox.currency}}"  disabled="">
     </div>
     <div class="form-group col-3">
-        <button (click)="create()" class="btn btn-dark">Criar Registro</button>
+        <button (click)="update(cashBox)" class="btn btn-dark">Editar Registro</button>
     </div>
     
 </form>

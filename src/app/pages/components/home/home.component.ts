@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private auth: AngularFireAuth
+  ) { }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    var user = this.auth.currentUser
+    if(user!=null) {
+      console.log('sua mae');
+    } else {
+      console.log('nulo');
+      
+    }
   }
 
 }

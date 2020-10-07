@@ -21,7 +21,10 @@ export class SigninComponent implements OnInit {
     private auth: AngularFireAuth,
     private firestore: AngularFirestore,
     private showToast: ToastService
-  ) { }
+  ) 
+  {
+    console.log(localStorage['email'])
+  }
 
   ngOnInit() {
   }
@@ -29,10 +32,12 @@ export class SigninComponent implements OnInit {
   async signin(user: Users){
     if(!this.formValidation()) {
       try {
-          await this.auth.signInWithEmailAndPassword(user.email, user.pass)
-          this.showToast.showSuccess('SUCESSO! USUÁRIO LOGADO!')
+          await this.auth.signInWithEmailAndPassword(user.email, user.pass).then(user => {
+            localStorage['email'] = user.user.email
+          })
+          this.showToast.showSuccess('Sucesso! Usuário logado!')
           this.router.navigateByUrl('/home')
-          console.log('USUÁRIO LOGADO -> ' +user)
+          console.log('Email do usuário logado -> ' +user.email)
         } 
         catch(e) {
           this.showToast.showSuccess(e)
